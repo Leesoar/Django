@@ -10,3 +10,8 @@
 ```OS
 	python -m virtualenv project_name
 ```
+
+* **step 2**：触发/激活虚拟环境
+```OS
+	cd project_name\Scripts\activate.bat
+```
