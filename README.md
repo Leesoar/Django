@@ -21,3 +21,9 @@
 	cd env_name
 	django-admin startproject project_name
 ```
+
+* **Step 4**：运行
+```OS
+	cd project_name
+	python manage.py runserver
+```
