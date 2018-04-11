@@ -8,10 +8,16 @@
 
 * **Step 1**：创建虚拟环境
 ```OS
-	python -m virtualenv project_name
+	python -m virtualenv env_name
 ```
 
 * **Step 2**：触发/激活虚拟环境
 ```OS
-	cd project_name\Scripts\activate.bat
+	cd env_name\Scripts\activate.bat
+```
+
+* **Step 3**:创建项目
+```OS
+	cd env_name
+	django-admin startproject project_name
 ```
