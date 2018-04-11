@@ -16,7 +16,7 @@
 	cd env_name\Scripts\activate.bat
 ```
 
-* **Step 3**:创建项目
+* **Step 3**：创建项目
 ```OS
 	cd env_name
 	django-admin startproject project_name
