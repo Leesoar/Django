@@ -6,12 +6,12 @@
 
 # 准备
 
-* **step 1**：创建虚拟环境
+* **Step 1**：创建虚拟环境
 ```OS
 	python -m virtualenv project_name
 ```
 
-* **step 2**：触发/激活虚拟环境
+* **Step 2**：触发/激活虚拟环境
 ```OS
 	cd project_name\Scripts\activate.bat
 ```
