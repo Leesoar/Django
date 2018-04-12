@@ -25,5 +25,5 @@
 * **Step 4**：运行
 ```OS
 	cd project_name
-	python manage.py runserver
+	python manage.py runserver [port](可选-设置端口号)
 ```
