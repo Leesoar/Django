@@ -27,3 +27,9 @@
 	cd project_name
 	python manage.py runserver [port](可选-设置端口号)
 ```
+
+* **Step 5**：创建app
+```OS
+	cd project_name
+	python manage.py startapp app_name
+```
