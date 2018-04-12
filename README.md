@@ -39,7 +39,7 @@
 > *settings.py*
 ```python
 	INSTALLED_APPS = [
-    your_app_name,         # 在此处添加本行
+	your_app_name,         # 在此处添加本行
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
