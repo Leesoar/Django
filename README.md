@@ -33,3 +33,32 @@
 	cd project_name
 	python manage.py startapp app_name
 ```
+
+* **Step 6**：配置app中的models.py与project中的settings.py
+
+> *settings.py*
+```python
+	INSTALLED_APPS = [
+    your_app_name,         # 在此处添加本行
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+> *models.py*
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',        #设置所用数据库，此处使用的是postgresql
+        'NAME': 'blog',                 # app名称
+        'USER': 'postgre',              # 数据库的user
+        'PASSWORD': '',                 # 数据库密码
+        'HOST': '127.0.0.1',            # 主机默认值
+        'PORT': '5432',                 # 端口默认值
+    }
+}
+```
