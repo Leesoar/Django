@@ -109,7 +109,7 @@ urlpatterns = [
 
 	正确的做法是创建模板，即在app_name目录下新建文件夹`templates`，将网页存储在`templates`目录下。
 
-**example**
+**Example**
 
 	首先在`templates`中创建home.html:
 
