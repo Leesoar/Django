@@ -134,5 +134,3 @@ def home(request):
 	return render(request, 'home.html', {})
 ```
 # 正式开始
-
-##
