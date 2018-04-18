@@ -111,7 +111,7 @@ urlpatterns = [
 
 **Example**
 
-	首先在`templates`中创建home.html:
+	首先在templates中创建home.html:
 
 > *home.html*
 ```html
@@ -123,7 +123,7 @@ urlpatterns = [
 </html>
 ```
 
-	然后修改`views.py`中的内容:
+	然后修改views.py中的内容:
 
 > *views.py*
 ```python
