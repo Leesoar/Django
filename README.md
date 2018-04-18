@@ -109,6 +109,30 @@ urlpatterns = [
 
 	正确的做法是创建模板，即在app_name目录下新建文件夹`templates`，将网页存储在`templates`目录下。
 
+**example**
+
+	首先在`templates`中创建home.html:
+
+> *home.html*
+```html
+<html>
+	<head>HelloWorld</head>
+	<body>
+		demo
+	</body>>
+</html>
+```
+
+	然后修改`views.py`中的内容:
+
+> *views.py*
+```python
+from django.shortcuts import render
+
+# Create your views here.
+def home(request):
+	return render(request, 'home.html', {})
+```
 # 正式开始
 
 ##
