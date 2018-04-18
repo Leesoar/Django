@@ -70,3 +70,45 @@ DATABASES = {
 	python manage.py makemigrations app_name         # 创建app的迁移，并生成记录文件
 	python manage.py migrate             # 将刚才创建的app迁移至数据库(自动寻找app中的models.py,然后将元数据中定义的db_table的值当表名建表)
 ```
+
+* **Step 8**：第一个简单网页
+
+> *views.py*（在app_name中）
+```python
+from django.shortcuts import render
+from django.http import HttpResponse
+from datetime import datetime
+# Create your views here.
+def home(request):
+	html = "<html><head>HelloWorld<br/></head><body>现在是北京时间 %s。</body></html>" % datetime.now()
+	return HttpResponse(html)
+```
+
+> *urls.py*（在project_name/project_name中）
+```python
+from django.contrib import admin
+# from django.conf.urls import url
+from django.urls import path, re_path     #re_path为正则表达式用法
+from your_app_name import views         #此处是你的app名称
+ 
+urlpatterns = [
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^$', views.home),
+]
+
+# 或者这样写
+# urlpatterns = [
+#     url(r'^admin/', admin.site.urls),
+#     url(r'^$', views.home),
+# ]
+```
+
+* **Step 9**：第一个简单网页的进阶版
+
+	在平常的Django项目中，不会在`views.py`中使用html变量来写HTML页面，因为一个网页的HTML代码通常非常多。
+
+	正确的做法是创建模板，即在app_name目录下新建文件夹`templates`，将网页存储在`templates`目录下。
+
+# 正式开始
+
+## 第一个简单网页的进阶版
