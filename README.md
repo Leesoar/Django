@@ -111,15 +111,17 @@ urlpatterns = [
 
 **Example**
 
-	首先在templates中创建home.html:
+	首先在templates中创建home.html('{{}}'为django的模板变量):
 
 > *home.html*
 ```html
 <html>
-	<head>HelloWorld</head>
+	<head>
+		<title>{{ title }}</title>
+	</head>
 	<body>
-		demo
-	</body>>
+		{{ content }}
+	</body>
 </html>
 ```
 
@@ -131,6 +133,9 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-	return render(request, 'home.html', {})
+	return render(request, 'home.html', context={
+				"title": "HelloWorld",
+				"content": "demo"
+				})
 ```
 # 正式开始
