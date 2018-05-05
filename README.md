@@ -62,6 +62,11 @@ DATABASES = {
 }
 ```
 
+> 别忘了安装psycopg2
+```python
+	pip install psycopg2      #postgresql的一个接口
+```
+
 > *models.py*
 ```python
 from django.db import models
