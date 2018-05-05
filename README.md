@@ -47,10 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-```
 
-> *models.py*
-```python
+...
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',        #设置所用数据库，此处使用的是postgresql
@@ -61,6 +60,26 @@ DATABASES = {
         'PORT': '5432',                 # 端口默认值
     }
 }
+```
+
+> *models.py*
+```python
+from django.db import models
+
+# Create your models here.
+
+class Article(models.Model):
+	title = models.CharField("标题", max_length=50)
+	author = models.CharField("作者", max_length=50)
+	created_date = models.DateField("创建日期", auto_now_add=True)     # auto_now_add表示只自动获取时间一次，之后不会改变
+	modifyed_date = models.DateField("修改日期", auto_now=True)        # auto_now表示自动获取时间并会覆盖上一次获取的时间
+	content = models.TextField("文章内容")
+	is_show = models.BooleanField("是否显示文章")
+
+	class Meta:
+		db_table = "article"       #创建数据库的article表
+	def __str__(self):
+		return self.title
 ```
 
 * **Step 7**：写入(app迁移至)数据库
