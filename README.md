@@ -163,3 +163,147 @@ def home(request):
 				})
 ```
 # 正式开始
+
+## 数据库操作
+	
+	在包含manage.py的目录下运行：
+
+```python
+	python manage.py shell
+```
+### 增数据
+
+> 创建分类和标签
+```python
+	>>> from app_name.models import Category, Tag, Article      #从应用中导入这三个类
+	>>> c = Category(name='im category')    #对分类类进行实例化
+	>>> c.save()
+	>>> t = Tag(name='im tag')         #对标签类进行实例化
+	>>> t.save()
+```
+
+> 创建文章
+```python
+	>>> from app_name.models import Category, Tag, Article
+	>>> from django.utils import timezone
+	>>> from django.contrib.auth.models import User
+
+	>>> user = User.objects.get(username='raoseel')
+	>>> c = Category.objects.get(name='im category')
+
+	>>> a = Article(title='im title', body='im body', created_time=timezone.now(), modified_time=timezone.now(), category=c, author=user)
+	>>> a.save()
+```
+
+### 查数据
+```python
+	>>> Category.objects.all()
+	>>> Tag.objects.all()
+	>>> Article.objects.all()
+```
+
+### 改数据
+```python
+	>>> c = Category.objects.get(name='im category')
+	>>> c.name = 'im new category'
+	>>> c.save()
+	>>> Category.objects.all()
+```
+
+### 删数据
+```python
+	>>> a = Article.objects.get(title='im title')
+	>>> a
+	<Article: im title>
+	>>> a.delete()
+	(1, {'com.Article_tags': 0, 'com.Article': 1})
+	>>> com.objects.all()
+```
+
+## 配置应用
+
+	在app_name中创建urls.py（便于未来管理）：
+
+> *app_name/urls.py*
+```python
+	from django.contrib import admin
+	# from django.conf.urls import url
+	from django.urls import path, re_path     #re_path为正则表达式用法
+	from your_app_name import views         #此处是你的app名称
+	 
+	urlpatterns = [
+	    re_path(r'^admin/', admin.site.urls),
+	    re_path(r'^$', views.home),
+	]
+
+	# 或者这样写
+	# urlpatterns = [
+	#     url(r'^admin/', admin.site.urls),
+	#     url(r'^$', views.home),
+	# ]
+```
+
+> *views.py*
+```python
+	from django.shortcuts import render
+	from django.http import HttpResponse
+
+	def index(request):
+	    return HttpResponse("welcome to leesoar.com!")
+```
+
+	Django并不知道我们创建了一个urls.py在app文件夹中，所以我们需要告诉它：
+
+> *project_name/urls.py*
+```python
+	from django.contrib import admin
+	from django.urls import path,include
+
+	urlpatterns = [
+	    path('admin/', admin.site.urls),
+	    path('', include('com.urls')),
+	]
+```
+### 使用模板系统
+
+	在project文件夹中创建templates,然后在templates文件夹创建app_name文件夹(便于未来维护),再创建index.html：
+
+```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>{{ title }}</title>      #用 {{ }} 包起来的变量叫做模板变量。Django 在渲染这个模板的时候会根据我们传递给模板的变量替换掉这些变量。最终在模板中显示的将会是我们传递的值。
+	</head>
+	<body>
+	<h1>{{ welcome }}</h1>
+	</body>
+	</html>
+```
+
+	然后告诉Django该去哪里找模板来渲染，在settings.py中修改：
+```python
+	TEMPLATES = [
+	    {
+	        ...
+	        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+	        ...
+	    },
+	]
+```
+
+	修改views.py：
+```python
+	from django.shortcuts import render
+
+	def index(request):
+	    return render(request, 'com/index.html', context={
+	                      'title': 'leesoar.com', 
+	                      'welcome': 'welcome to leesoar.com!'
+	                  })
+```
+
+## 创建超级用户
+```python
+	python manage.py createsuperuser
+```
