@@ -117,7 +117,7 @@ from your_app_name import views         #此处是你的app名称
  
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^$', views.home)
+    re_path(r'^$', views.home),
 ]
 
 # 或者这样写
