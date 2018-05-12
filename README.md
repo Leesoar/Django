@@ -117,7 +117,7 @@ from your_app_name import views         #此处是你的app名称
  
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^$', views.home),
+    re_path(r'^$', views.home)
 ]
 
 # 或者这样写
@@ -303,6 +303,18 @@ def home(request):
 	                  })
 ```
 
+	修改views.py(从数据库读取):
+```python
+from django.shortcuts import render
+from com.models import Article
+
+def index(request):
+    Article_list = Article.objects.all().order_by('-created_time')
+    '''
+    由于通常来说博客文章列表是按文章发表时间倒序排列的，即最新的文章排在最前面，所以我们紧接着调用了 order_by 方法对这个返回的 queryset 进行排序。排序依据的字段是 created_time，即文章的创建时间。- 号表示逆序，如果不加 - 则是正序。
+    '''
+    return render(request, 'com/index.html', context={'Article_list': Article_list})
+```
 ## 创建超级用户
 ```python
 	python manage.py createsuperuser
